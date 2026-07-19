@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.visitor')
 
 @section('content')
 
@@ -13,29 +13,45 @@
 
         <div class="mb-3">
             <label class="form-label">Nom (Français)</label>
-            <input type="text"
-                   name="nom_fr"
-                   class="form-control"
-                   value="{{ $domaine->nom_fr }}"
-                   required>
+            <input
+                type="text"
+                name="nom_fr"
+                class="form-control"
+                value="{{ old('nom_fr', $domaine->nom_fr) }}"
+                required>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Nom (Arabe)</label>
-            <input type="text"
-                   name="nom_ar"
-                   class="form-control"
-                   dir="rtl"
-                   value="{{ $domaine->nom_ar }}"
-                   required>
+            <input
+                type="text"
+                name="nom_ar"
+                class="form-control"
+                dir="rtl"
+                value="{{ old('nom_ar', $domaine->nom_ar) }}"
+                required>
         </div>
 
-        <button class="btn btn-success">
-            Enregistrer
+        <div class="mb-3">
+            <label class="form-label">Catégorie</label>
+
+            <select name="categorie_id" class="form-select" required>
+
+                @foreach($categories as $categorie)
+                    <option value="{{ $categorie->id }}"
+                        {{ $domaine->categorie_id == $categorie->id ? 'selected' : '' }}>
+                        {{ $categorie->nom_fr }}
+                    </option>
+                @endforeach
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-warning">
+            Modifier
         </button>
 
-        <a href="{{ route('domaines.index') }}"
-           class="btn btn-secondary">
+        <a href="{{ route('domaines.index') }}" class="btn btn-secondary">
             Annuler
         </a>
 

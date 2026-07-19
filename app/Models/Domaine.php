@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domaine extends Model
 {
-    protected $fillable = [
-        'nom_fr',
-        'nom_ar'
-    ];
+   protected $fillable = [
+    'nom_fr',
+    'nom_ar',
+    'categorie_id',
+   ];
 
     public function categorie()
     {
