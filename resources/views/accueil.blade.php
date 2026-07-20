@@ -35,7 +35,30 @@
 
 </section>
 
-@if(isset($categorie))
+<section class="container mt-5">
+
+    <h2 class="text-center mb-4">
+        Catégories
+    </h2>
+
+    <div class="list-group w-50 mx-auto">
+
+        @foreach($categories as $categorie)
+
+            <a href="{{ route('categorie.show', $categorie->id) }}"
+               class="list-group-item list-group-item-action">
+
+                {{ $categorie->nom_fr }}
+
+            </a>
+
+        @endforeach
+
+    </div>
+
+</section>
+
+@if(isset($categorie) && isset($domaines))
 
 <section class="container mt-5">
 
@@ -49,7 +72,9 @@
 
             <a href="{{ route('domaine.show', $domaine->id) }}"
                class="list-group-item list-group-item-action">
+
                 {{ $domaine->nom_fr }}
+
             </a>
 
         @endforeach
@@ -83,26 +108,25 @@
 
             <tbody>
 
-               @foreach($textes as $texte)
+                @foreach($textes as $texte)
 
-                  <tr>
-                     <td>{{ $texte->numero }}</td>
+                    <tr>
 
-                     <td>  
-                        <a href="{{ route('texte.show', $texte->id) }}">
-                            {{ $texte->titre_fr }}
-                        </a>
-                     </td>
+                        <td>{{ $texte->numero }}</td>
 
-                     <td>{{ $texte->categorie->nom_fr }}</td>
+                        <td>
+                            <a href="{{ route('texte.show', $texte->id) }}">
+                                {{ $texte->titre_fr }}
+                            </a>
+                        </td>
 
-                     <td>{{ $texte->date_publication }}</td>
-                  </tr>
+                        <td>{{ $texte->categorie->nom_fr }}</td>
 
-               @endforeach
-    
+                        <td>{{ $texte->date_publication }}</td>
 
+                    </tr>
 
+                @endforeach
 
             </tbody>
 

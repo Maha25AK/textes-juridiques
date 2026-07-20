@@ -1,4 +1,4 @@
-@extends('layouts.visitor')
+@extends('layouts.admin')
 
 @section('title', $texte->titre_fr)
 

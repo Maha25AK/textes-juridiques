@@ -12,10 +12,8 @@ class DomaineController extends Controller
     {
         $categorie = Categorie::findOrFail($id);
 
-        $domaines = Domaine::whereHas('textesJuridiques', function ($query) use ($id) {
-            $query->where('categorie_id', $id);
-        })->get();
+        $domaines = Domaine::where('categorie_id', $id)->get();
 
-        return view('accueil', compact('categorie', 'domaines'));
+        return view('domaines.index', compact('categorie', 'domaines'));
     }
 }
