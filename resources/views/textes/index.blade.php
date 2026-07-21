@@ -25,18 +25,25 @@
 
             <tr>
                 <td>{{ $texte->numero }}</td>
+
                 <td>
-                <a href="{{ route('texte.show', $texte->id) }}"
-                 class="text-decoration-none">
-                 {{ $texte->titre_fr }}
-                </a>
-                </td>
-                <td>{{ $texte->date_publication }}</td>
-                <td>
-                    <a href="{{ asset($texte->lien_pdf) }}" target="_blank">
-                        Consulter
+                    <a href="{{ route('texte.show', $texte->id) }}" class="text-decoration-none">
+                        {{ $texte->titre_fr }}
                     </a>
                 </td>
+
+                <td>{{ $texte->date_publication }}</td>
+
+                <td>
+                    @if($texte->lien_pdf)
+                        <a href="{{ asset('storage/' . $texte->lien_pdf) }}" target="_blank">
+                            Consulter
+                        </a>
+                    @else
+                        Aucun PDF
+                    @endif
+                </td>
+
             </tr>
 
         @endforeach
