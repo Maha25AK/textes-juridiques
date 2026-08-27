@@ -20,11 +20,11 @@
 
     <div class="mt-4">
 
-        <a href="{{ asset($texte->lien_pdf) }}"
+        <a href="{{ asset('storage/' . $texte->lien_pdf) }}"
            target="_blank"
            class="btn btn-primary">
 
-            Consulter le PDF
+             Consulter le PDF
 
         </a>
 
