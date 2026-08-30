@@ -114,7 +114,9 @@ class TexteJuridiqueController extends Controller
 
     public function show(string $id)
     {
-        //
+    $texte = TexteJuridique::with('categorie', 'domaine')->findOrFail($id);
+
+    return view('admin.textes.show', compact('texte'));
     }
 
    /**
