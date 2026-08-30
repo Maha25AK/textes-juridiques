@@ -6,11 +6,11 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Liste des domaines</h2>
+        <h2>{{ __('messages.domains_list') }}</h2>
 
         <a href="{{ route('domaines.create') }}"
            class="btn btn-primary">
-            Ajouter un domaine
+            {{ __('messages.add_domain') }}
         </a>
 
     </div>
@@ -29,9 +29,9 @@
 
             <tr>
                 <th>ID</th>
-                <th>Nom (FR)</th>
-                <th>Nom (AR)</th>
-                <th width="180">Actions</th>
+                <th>{{ __('messages.name_fr') }}</th>
+                <th>{{ __('messages.name_ar') }}</th>
+                <th width="180">{{ __('messages.actions') }}</th>
             </tr>
 
         </thead>
@@ -43,16 +43,21 @@
                 <tr>
 
                     <td>{{ $domaine->id }}</td>
+                    
+                    <td>
+                      {{ app()->getLocale() == 'ar'
+                           ? $domaine->nom_ar
+                           : $domaine->nom_fr }}
+                    </td>
+                    
 
-                    <td>{{ $domaine->nom_fr }}</td>
-
-                    <td dir="rtl">{{ $domaine->nom_ar }}</td>
+                    
 
                     <td>
 
                         <a href="{{ route('domaines.edit', $domaine->id) }}"
                            class="btn btn-warning btn-sm">
-                            Modifier
+                            {{ __('messages.edit') }}
                         </a>
 
                         <form action="{{ route('domaines.destroy', $domaine->id) }}"
@@ -63,8 +68,8 @@
                             @method('DELETE')
 
                             <button class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Supprimer ce domaine ?')">
-                                Supprimer
+                                    onclick="return confirm('{{ __('messages.confirm_delete_domain') }}')">
+                                {{ __('messages.delete') }}
                             </button>
 
                         </form>

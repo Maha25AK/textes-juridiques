@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Modifier une catégorie')
+@section('title', __('messages.edit_category'))
 
 @section('content')
 
 <div class="container mt-5">
 
     <h2 class="mb-4">
-        Modifier une catégorie
+        {{ __('messages.edit_category') }}
     </h2>
 
     <form action="{{ route('categories.update', $categorie->id) }}" method="POST">
@@ -18,7 +18,7 @@
         <div class="mb-3">
 
             <label class="form-label">
-                Nom (Français)
+                {{ __('messages.name_fr_full') }}
             </label>
 
             <input
@@ -33,7 +33,7 @@
         <div class="mb-3">
 
             <label class="form-label">
-                Nom (Arabe)
+                {{ __('messages.name_ar_full') }}
             </label>
 
             <input
@@ -46,12 +46,12 @@
         </div>
 
         <button type="submit" class="btn btn-primary">
-            Modifier
+            {{ __('messages.edit') }}
         </button>
 
         <a href="{{ route('categories.index') }}"
            class="btn btn-secondary">
-            Annuler
+            {{ __('messages.cancel') }}
         </a>
 
     </form>

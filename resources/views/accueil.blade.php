@@ -1,17 +1,15 @@
 @extends('layouts.visitor')
 
-@section('title', 'Accueil')
+@section('title', __('messages.home'))
 
 @section('content')
 
 <section class="hero">
 
-    <h1>PORTAIL DES TEXTES JURIDIQUES</h1>
+    <h1>{{ __('messages.portal_title') }}</h1>
 
     <p>
-        Consultez les lois, décrets, arrêtés et circulaires publiés
-        par le Ministère de l'Aménagement du Territoire, de l'Urbanisme,
-        de l'Habitat et de la Politique de la Ville.
+        {{ __('messages.portal_description') }}
     </p>
 
     <form action="{{ route('home') }}" method="GET" class="mt-4">
@@ -22,11 +20,11 @@
                 type="text"
                 name="q"
                 class="form-control"
-                placeholder="Rechercher par numéro ou titre..."
+                placeholder="{{ __('messages.search_placeholder') }}"
                 value="{{ request('q') }}">
 
             <button class="btn btn-primary">
-                Rechercher
+                {{ __('messages.search') }}
             </button>
 
         </div>
@@ -38,7 +36,7 @@
 <section class="container mt-5">
 
     <h2 class="text-center mb-4">
-        Catégories
+        {{ __('messages.categories') }}
     </h2>
 
     <div class="list-group w-50 mx-auto">
@@ -48,7 +46,11 @@
             <a href="{{ route('categorie.show', $categorie->id) }}"
                class="list-group-item list-group-item-action">
 
-                {{ $categorie->nom_fr }}
+                @if(app()->getLocale() === 'ar')
+                    {{ $categorie->nom_ar }}
+                @else
+                    {{ $categorie->nom_fr }}
+                @endif
 
             </a>
 
@@ -63,7 +65,13 @@
 <section class="container mt-5">
 
     <h2 class="text-center mb-4">
-        {{ $categorie->nom_fr }}
+
+        @if(app()->getLocale() === 'ar')
+            {{ $categorie->nom_ar }}
+        @else
+            {{ $categorie->nom_fr }}
+        @endif
+
     </h2>
 
     <div class="list-group w-50 mx-auto">
@@ -73,7 +81,11 @@
             <a href="{{ route('domaine.show', $domaine->id) }}"
                class="list-group-item list-group-item-action">
 
-                {{ $domaine->nom_fr }}
+                @if(app()->getLocale() === 'ar')
+                    {{ $domaine->nom_ar }}
+                @else
+                    {{ $domaine->nom_fr }}
+                @endif
 
             </a>
 
@@ -90,7 +102,7 @@
 <section class="container mt-5">
 
     <h2 class="mb-4">
-        Résultats de la recherche
+        {{ __('messages.search_results') }}
     </h2>
 
     @if($textes->count())
@@ -99,10 +111,10 @@
 
             <thead>
                 <tr>
-                    <th>Numéro</th>
-                    <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Date</th>
+                    <th>{{ __('messages.number') }}</th>
+                    <th>{{ __('messages.title') }}</th>
+                    <th>{{ __('messages.category') }}</th>
+                    <th>{{ __('messages.date') }}</th>
                 </tr>
             </thead>
 
@@ -116,11 +128,23 @@
 
                         <td>
                             <a href="{{ route('texte.show', $texte->id) }}">
-                                {{ $texte->titre_fr }}
+
+                                @if(app()->getLocale() === 'ar')
+                                    {{ $texte->titre_ar }}
+                                @else
+                                    {{ $texte->titre_fr }}
+                                @endif
+
                             </a>
                         </td>
 
-                        <td>{{ $texte->categorie->nom_fr }}</td>
+                        <td>
+                            @if(app()->getLocale() === 'ar')
+                                {{ $texte->categorie->nom_ar }}
+                            @else
+                                {{ $texte->categorie->nom_fr }}
+                            @endif
+                        </td>
 
                         <td>{{ $texte->date_publication }}</td>
 
@@ -135,7 +159,7 @@
     @else
 
         <div class="alert alert-warning">
-            Aucun texte trouvé.
+            {{ __('messages.no_text_found') }}
         </div>
 
     @endif
@@ -146,7 +170,7 @@
 
 <section class="top-textes">
 
-    <h2>Les textes les plus consultés</h2>
+    <h2>{{ __('messages.most_viewed') }}</h2>
 
     <ul>
         <li>Loi 12-90</li>
@@ -158,11 +182,10 @@
 
 <section class="about">
 
-    <h2>À propos du portail</h2>
+    <h2>{{ __('messages.about_portal') }}</h2>
 
     <p>
-        Ce portail permet aux citoyens et aux professionnels
-        de consulter facilement les textes juridiques.
+        {{ __('messages.about_description') }}
     </p>
 
 </section>

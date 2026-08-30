@@ -4,32 +4,34 @@
 
 <div class="container">
 
-    <h2 class="mb-4">Ajouter un domaine</h2>
+    <h2 class="mb-4">{{ __('messages.add_domain') }}</h2>
 
     <form action="{{ route('domaines.store') }}" method="POST">
 
         @csrf
 
         <div class="mb-3">
-            <label class="form-label">Nom (Français)</label>
+            <label class="form-label">{{ __('messages.name_fr_full') }}</label>
             <input type="text" name="nom_fr" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Nom (Arabe)</label>
+            <label class="form-label">{{ __('messages.name_ar_full') }}</label>
             <input type="text" name="nom_ar" class="form-control" dir="rtl" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Catégorie</label>
+            <label class="form-label">{{ __('messages.category') }}</label>
 
             <select name="categorie_id" class="form-select" required>
 
-                <option value="">-- Choisir une catégorie --</option>
+                <option value="">-- {{ __('messages.choose_category') }} --</option>
 
                 @foreach($categories as $categorie)
                     <option value="{{ $categorie->id }}">
-                        {{ $categorie->nom_fr }}
+                        {{ app()->getLocale() == 'ar'
+                            ? $categorie->nom_ar
+                            : $categorie->nom_fr }}
                     </option>
                 @endforeach
 
@@ -37,11 +39,11 @@
         </div>
 
         <button type="submit" class="btn btn-primary">
-            Ajouter
+            {{ __('messages.add') }}
         </button>
 
         <a href="{{ route('domaines.index') }}" class="btn btn-secondary">
-            Annuler
+            {{ __('messages.cancel') }}
         </a>
 
     </form>

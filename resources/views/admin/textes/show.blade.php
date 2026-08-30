@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $texte->titre_fr)
+@section('title', app()->getLocale() == 'ar' ? $texte->titre_ar : $texte->titre_fr)
 
 @section('content')
 
@@ -10,7 +10,9 @@
 
         <div class="card-header bg-primary text-white">
 
-            <h2 class="mb-0">{{ $texte->titre_fr }}</h2>
+            <h2 class="mb-0">
+                {{ app()->getLocale() == 'ar' ? $texte->titre_ar : $texte->titre_fr }}
+            </h2>
 
         </div>
 
@@ -19,12 +21,12 @@
             <div class="row mb-4">
 
                 <div class="col-md-6">
-                    <strong>Numéro :</strong>
+                    <strong>{{ __('messages.number') }} :</strong>
                     {{ $texte->numero }}
                 </div>
 
                 <div class="col-md-6">
-                    <strong>Date de publication :</strong>
+                    <strong>{{ __('messages.publication_date') }} :</strong>
                     {{ $texte->date_publication }}
                 </div>
 
@@ -33,30 +35,41 @@
             <div class="row mb-4">
 
                 <div class="col-md-6">
-                    <strong>Catégorie :</strong>
-                    {{ $texte->categorie->nom_fr }}
+                    <strong>{{ __('messages.category') }} :</strong>
+                    {{ app()->getLocale() == 'ar'
+                        ? $texte->categorie->nom_ar
+                        : $texte->categorie->nom_fr }}
                 </div>
 
                 <div class="col-md-6">
-                    <strong>Domaine :</strong>
-                    {{ $texte->domaine->nom_fr }}
+                    <strong>{{ __('messages.domain') }} :</strong>
+                    {{ app()->getLocale() == 'ar'
+                        ? $texte->domaine->nom_ar
+                        : $texte->domaine->nom_fr }}
                 </div>
 
             </div>
 
             <hr>
 
-            <h4>🇫🇷 Contenu (Français)</h4>
+            @if(app()->getLocale() == 'ar')
 
-            <div class="border rounded p-3 bg-light mb-4">
-                {{ $texte->contenu_fr }}
-            </div>
+                <h4>🇲🇦 {{ __('messages.content_ar') }}</h4>
 
-            <h4 class="text-end">🇲🇦 المحتوى بالعربية</h4>
+                <div class="border rounded p-3 bg-light text-end"
+                     dir="rtl">
+                    {{ $texte->contenu_ar }}
+                </div>
 
-            <div class="border rounded p-3 bg-light text-end" dir="rtl">
-                {{ $texte->contenu_ar }}
-            </div>
+            @else
+
+                <h4>🇫🇷 {{ __('messages.content_fr') }}</h4>
+
+                <div class="border rounded p-3 bg-light">
+                    {{ $texte->contenu_fr }}
+                </div>
+
+            @endif
 
             @if($texte->lien_pdf)
 
@@ -66,7 +79,7 @@
                        target="_blank"
                        class="btn btn-danger">
 
-                        📄 Télécharger le PDF
+                        📄 {{ __('messages.download_pdf') }}
 
                     </a>
 

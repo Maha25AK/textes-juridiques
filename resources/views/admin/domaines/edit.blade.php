@@ -1,10 +1,14 @@
 @extends('layouts.admin')
 
+@section('title', __('messages.edit_domain'))
+
 @section('content')
 
 <div class="container">
 
-    <h2 class="mb-4">Modifier un domaine</h2>
+    <h2 class="mb-4">
+        {{ __('messages.edit_domain') }}
+    </h2>
 
     <form action="{{ route('domaines.update', $domaine->id) }}" method="POST">
 
@@ -12,7 +16,10 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label class="form-label">Nom (Français)</label>
+            <label class="form-label">
+                {{ __('messages.name_fr_full') }}
+            </label>
+
             <input
                 type="text"
                 name="nom_fr"
@@ -22,7 +29,10 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Nom (Arabe)</label>
+            <label class="form-label">
+                {{ __('messages.name_ar_full') }}
+            </label>
+
             <input
                 type="text"
                 name="nom_ar"
@@ -33,26 +43,35 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Catégorie</label>
+            <label class="form-label">
+                {{ __('messages.category') }}
+            </label>
 
             <select name="categorie_id" class="form-select" required>
 
                 @foreach($categories as $categorie)
+
                     <option value="{{ $categorie->id }}"
                         {{ $domaine->categorie_id == $categorie->id ? 'selected' : '' }}>
-                        {{ $categorie->nom_fr }}
+
+                        {{ app()->getLocale() == 'ar'
+                            ? $categorie->nom_ar
+                            : $categorie->nom_fr }}
+
                     </option>
+
                 @endforeach
 
             </select>
         </div>
 
         <button type="submit" class="btn btn-warning">
-            Modifier
+            {{ __('messages.edit') }}
         </button>
 
-        <a href="{{ route('domaines.index') }}" class="btn btn-secondary">
-            Annuler
+        <a href="{{ route('domaines.index') }}"
+           class="btn btn-secondary">
+            {{ __('messages.cancel') }}
         </a>
 
     </form>

@@ -1,19 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Ajouter une catégorie')
+@section('title', __('messages.add_category'))
 
 @section('content')
 
 <div class="container mt-5">
 
-    <h2 class="mb-4">Ajouter une catégorie</h2>
+    <h2 class="mb-4">{{ __('messages.add_category') }}</h2>
 
     <form action="{{ route('categories.store') }}" method="POST">
 
         @csrf
 
         <div class="mb-3">
-            <label class="form-label">Nom (Français)</label>
+            <label class="form-label">
+                {{ __('messages.name_french') }}
+            </label>
 
             <input
                 type="text"
@@ -23,7 +25,9 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Nom (Arabe)</label>
+            <label class="form-label">
+                {{ __('messages.name_arabic') }}
+            </label>
 
             <input
                 type="text"
@@ -33,11 +37,11 @@
         </div>
 
         <button type="submit" class="btn btn-success">
-            Enregistrer
+            {{ __('messages.save') }}
         </button>
 
         <a href="{{ route('categories.index') }}" class="btn btn-secondary">
-            Annuler
+            {{ __('messages.cancel') }}
         </a>
 
     </form>

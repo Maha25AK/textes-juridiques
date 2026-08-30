@@ -2,7 +2,7 @@
     <div class="container">
 
         <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">
-            Portail des Textes Juridiques
+            {{ __('messages.portal_title') }}
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -17,28 +17,28 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                        href="{{ route('dashboard') }}">
-                        <i class="bi bi-house-door"></i> Dashboard
+                        <i class="bi bi-house-door"></i> {{ __('messages.dashboard') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}"
                        href="{{ route('categories.index') }}">
-                        <i class="bi bi-folder"></i> Catégories
+                        <i class="bi bi-folder"></i> {{ __('messages.categories') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('domaines.*') ? 'active' : '' }}"
                        href="{{ route('domaines.index') }}">
-                        <i class="bi bi-diagram-3"></i> Domaines
+                        <i class="bi bi-diagram-3"></i> {{ __('messages.domaines') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('textes.*') ? 'active' : '' }}"
                        href="{{ route('textes.index') }}">
-                        <i class="bi bi-file-earmark-text"></i> Textes juridiques
+                        <i class="bi bi-file-earmark-text"></i> {{ __('messages.legal_texts') }}
                     </a>
                 </li>
 
@@ -57,7 +57,7 @@
 
                         <button class="btn btn-outline-light btn-sm">
                             <i class="bi bi-box-arrow-right"></i>
-                            Déconnexion
+                            {{ __('messages.logout') }}
                         </button>
                     </form>
                 </li>

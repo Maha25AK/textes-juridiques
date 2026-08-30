@@ -4,9 +4,17 @@
 
         <!-- Langues -->
         <div class="text-end">
-            <a href="{{ route('lang.switch', 'fr') }}" class="text-decoration-none text-dark fw-semibold">FR</a>
+            <a href="{{ route('lang.switch', 'fr') }}"
+               class="text-decoration-none text-dark fw-semibold">
+                FR
+            </a>
+
             <span class="mx-2">|</span>
-            <a href="{{ route('lang.switch', 'ar') }}" class="text-decoration-none text-dark fw-semibold">AR</a>
+
+            <a href="{{ route('lang.switch', 'ar') }}"
+               class="text-decoration-none text-dark fw-semibold">
+                AR
+            </a>
         </div>
 
         <!-- Logo -->
@@ -23,32 +31,44 @@
             <ul class="nav justify-content-center">
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="{{ route('home') }}">
-                        Accueil
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('home') }}">
+                        {{ __('messages.home') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="{{ route('categorie.show', 1) }}">
-                        Lois
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('categorie.show', 1) }}">
+                        {{ __('messages.laws') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="{{ route('categorie.show', 2) }}">
-                        Décrets
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('categorie.show', 2) }}">
+                        {{ __('messages.decrees') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="{{ route('categorie.show', 3) }}">
-                        Arrêtés
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('categorie.show', 3) }}">
+                        {{ __('messages.orders') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="{{ route('categorie.show', 4) }}">
-                        Circulaires
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('categorie.show', 4) }}">
+                        {{ __('messages.circulars') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-semibold"
+                       href="{{ route('login') }}">
+                        {{ __('messages.manager') }}
                     </a>
                 </li>
 

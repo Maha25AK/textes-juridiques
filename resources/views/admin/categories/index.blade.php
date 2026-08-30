@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Gestion des catégories')
+@section('title', __('messages.manage_categories'))
 
 @section('content')
 
@@ -8,11 +8,11 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Gestion des catégories</h2>
+        <h2>{{ __('messages.manage_categories') }}</h2>
 
         <a href="{{ route('categories.create') }}"
            class="btn btn-success">
-            + Ajouter une catégorie
+            + {{ __('messages.add_category') }}
         </a>
 
     </div>
@@ -22,9 +22,9 @@
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Nom (FR)</th>
-                <th>Nom (AR)</th>
-                <th>Actions</th>
+                <th>{{ __('messages.name_fr') }}</th>
+                <th>{{ __('messages.name_ar') }}</th>
+                <th>{{ __('messages.actions') }}</th>
             </tr>
         </thead>
 
@@ -44,7 +44,7 @@
 
                     <a href="{{ route('categories.edit', $categorie->id) }}"
                        class="btn btn-warning btn-sm">
-                        Modifier
+                        {{ __('messages.edit') }}
                     </a>
 
                     <form action="{{ route('categories.destroy', $categorie->id) }}"
@@ -57,9 +57,9 @@
                         <button
                             type="submit"
                             class="btn btn-danger btn-sm"
-                            onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')">
+                            onclick="return confirm('{{ __('messages.confirm_delete_category') }}')">
 
-                             Supprimer
+                             {{ __('messages.delete') }}
 
                         </button>
 
@@ -73,7 +73,7 @@
 
             <tr>
                 <td colspan="4" class="text-center">
-                    Aucune catégorie.
+                    {{ __('messages.no_categories') }}
                 </td>
             </tr>
 

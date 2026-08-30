@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Modifier un texte')
+@section('title', __('messages.edit_text'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="card shadow">
 
         <div class="card-header bg-warning text-dark">
-            <h3>Modifier un texte juridique</h3>
+            <h3>{{ __('messages.edit_legal_text') }}</h3>
         </div>
 
         <div class="card-body">
@@ -22,7 +22,7 @@
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label>Titre (FR)</label>
+                    <label>{{ __('messages.title_fr') }}</label>
                     <input type="text"
                            name="titre_fr"
                            class="form-control"
@@ -31,16 +31,17 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Titre (AR)</label>
+                    <label>{{ __('messages.title_ar') }}</label>
                     <input type="text"
                            name="titre_ar"
                            class="form-control"
+                           dir="rtl"
                            value="{{ old('titre_ar', $texte->titre_ar) }}"
                            required>
                 </div>
 
                 <div class="mb-3">
-                    <label>Numéro</label>
+                    <label>{{ __('messages.number') }}</label>
                     <input type="text"
                            name="numero"
                            class="form-control"
@@ -49,7 +50,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Date de publication</label>
+                    <label>{{ __('messages.publication_date') }}</label>
                     <input type="date"
                            name="date_publication"
                            class="form-control"
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Catégorie</label>
+                    <label>{{ __('messages.category') }}</label>
 
                     <select name="categorie_id" class="form-select">
 
@@ -66,7 +67,11 @@
 
                             <option value="{{ $categorie->id }}"
                                 {{ $texte->categorie_id == $categorie->id ? 'selected' : '' }}>
-                                {{ $categorie->nom_fr }}
+
+                                {{ app()->getLocale() == 'ar'
+                                    ? $categorie->nom_ar
+                                    : $categorie->nom_fr }}
+
                             </option>
 
                         @endforeach
@@ -76,7 +81,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Domaine</label>
+                    <label>{{ __('messages.domain') }}</label>
 
                     <select name="domaine_id" class="form-select">
 
@@ -84,7 +89,11 @@
 
                             <option value="{{ $domaine->id }}"
                                 {{ $texte->domaine_id == $domaine->id ? 'selected' : '' }}>
-                                {{ $domaine->nom_fr }}
+
+                                {{ app()->getLocale() == 'ar'
+                                    ? $domaine->nom_ar
+                                    : $domaine->nom_fr }}
+
                             </option>
 
                         @endforeach
@@ -94,7 +103,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Contenu (FR)</label>
+                    <label>{{ __('messages.content_fr') }}</label>
 
                     <textarea
                         name="contenu_fr"
@@ -104,18 +113,19 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Contenu (AR)</label>
+                    <label>{{ __('messages.content_ar') }}</label>
 
                     <textarea
                         name="contenu_ar"
                         rows="6"
                         class="form-control"
+                        dir="rtl"
                         required>{{ old('contenu_ar', $texte->contenu_ar) }}</textarea>
                 </div>
 
                 <div class="mb-3">
 
-                    <label>Nouveau PDF (optionnel)</label>
+                    <label>{{ __('messages.new_pdf_optional') }}</label>
 
                     <input type="file"
                            name="lien_pdf"
@@ -129,19 +139,21 @@
                         <a href="{{ asset('storage/'.$texte->lien_pdf) }}"
                            target="_blank"
                            class="btn btn-outline-primary btn-sm">
-                            Consulter le PDF actuel
+
+                            {{ __('messages.current_pdf') }}
+
                         </a>
                     </div>
 
                 @endif
 
                 <button type="submit" class="btn btn-warning">
-                    Enregistrer les modifications
+                    {{ __('messages.save_changes') }}
                 </button>
 
                 <a href="{{ route('textes.index') }}"
                    class="btn btn-secondary">
-                    Annuler
+                    {{ __('messages.cancel') }}
                 </a>
 
             </form>
